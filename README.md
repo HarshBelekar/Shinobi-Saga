@@ -1,131 +1,174 @@
 # 🌀 Shinobi Saga - Naruto vs Sasuke ⚔️
 
-A fast-paced 2D fighting game built with **Python** and **Pygame**, featuring anime-inspired characters — **Naruto** and **Sasuke** — in an epic shinobi showdown.
+![Game Banner](assets/Screenshots/banner.png)
+
+
+**Shinobi Saga** is a fast-paced 2D fighting game built with **Python** and **Pygame**, featuring anime-inspired characters — **Naruto** and **Sasuke** — locked in an epic shinobi showdown. Enjoy smooth combat, animated attacks, health bars, and immersive sound effects in this first version of the game.
+
+![Repo Size](https://img.shields.io/github/repo-size/HarshBelekar/Shinobi-Saga)
+![Code Language](https://img.shields.io/github/languages/top/HarshBelekar/Shinobi-Saga)
+![Last Commit](https://img.shields.io/github/last-commit/HarshBelekar/Shinobi-Saga)
+![License](https://img.shields.io/github/license/HarshBelekar/Shinobi-Saga)
+![Python](https://img.shields.io/badge/Python-3.11-blue.svg)
+![Pygame](https://img.shields.io/badge/Pygame-2.5.2-orange?logo=pygame)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/HarshBelekar/Shinobi-Saga)
+![GitHub stars](https://img.shields.io/github/stars/HarshBelekar/Shinobi-Saga?style=social)
+
+
 
 ---
 
 ## 🎮 Game Features
 
-- 🧍‍♂️ Two Playable Characters: Naruto (player) vs Sasuke (enemy)
-- 🌀 Smooth Character Animations (Idle, Move, Jump, Attack, Defeated)
-- 🗡️ Shuriken Attacks & Health System
-- 🎵 Sound Effects for Clicks & Hits
-- 🛠️ Pause Menu with Resume, Restart, Exit, and Home
-- 🎌 Win Banners Displayed at Game Over
-- 🎨 Custom UI and Backgrounds
-- ⚙️ Clean, modular code with `Player`, `Enemy`, `Button`, and `Battle` classes
+- 🧍‍♂️ **Playable Characters**: Naruto (Player) vs Sasuke (Enemy)
+- 🎞️ **Smooth Animations**: Idle, Run, Jump, Attack, Damage, Defeated, Victory
+- 🗡️ **Shuriken Combat**: Throwing projectiles with effects
+- ❤️ **Health Bars** with Character Head Icons
+- 🎵 **Sound Effects**: Click, Hit, Jump, Block, Background Music
+- ⏸️ **Pause Menu**: Resume, Restart, Exit, Home Navigation
+- 🏆 **Victory Banners**: Naruto Wins / Sasuke Wins
+- 🧩 **Modular Codebase**: Easy to extend and manage
+- 🖱️ **Interactive Buttons**: With click and hover effects
+- 🎨 **Custom UI**: Game logo, UI icons, pause overlay, and more
+
+---
+
+## 📸 Screenshots
+
+### 🏠 Main Menu
+![Main Menu](assets/Screenshots/main_menu.png)
+
+### ⚔️ Battle Scene
+![Battle Scene](assets/Screenshots/battle_scene.png)
+
+### ❓ Help Screen
+![Help Screen](assets/Screenshots/help_screen.png)
+
+### ⏸️ Pause Screen
+![Pause Screen](assets/Screenshots/pause_screen.png)
+
+### 💀 Naruto Win Screen
+![Naruto Win](assets/Screenshots/naruto_wins.png)
+
+### 💀 Sasuke win Screen
+![Sasuke win](assets/Screenshots/sasuke_wins.png)
+
+---
+
+## 🧠 Tech Stack
+
+| Tool                | Purpose                        |
+|-------------------- |-------------------------------|
+| 🐍 Python & Pygame | Game logic and rendering       |
+| 💻 VS Code         | Code editor                    |
+| 🎨 Canva           | UI elements, icons             |
+| 🔁 Git + GitHub    | Version control and hosting    |
 
 ---
 
 ## 📂 Project Structure
 
-    ShinobiSaga/                            
+    ShinobiSaga/
     ├── assets/
-    │   ├── images/
-    │   │   ├── background/                
-    │   │   │   └── bg.png
-    │   │   ├── ui/                         
-    │   │   │   ├── game_logo.png 
-    │   │   │   ├── start_button.png 
-    │   │   │   ├── help_button.png 
-    │   │   │   ├── exit_button.png        
-    │   │   │   ├── pause_button.png 
-    │   │   │   ├── resume_button.png
-    │   │   │   ├── restart_button.png
-    │   │   │   ├── home_button.png 
-    │   │   │   ├── exit1_button.png  
-    │   │   │   ├── naruto_wins.png 
-    │   │   │   ├── sasuke_wins.png 
-    │   │   │   ├── naruto_head.png 
-    │   │   │   ├── sasuke_head.png 
-    │   │   │   ├── pause_menu.png
-    │   │   │   └── back_button.png 
-    │   │   ├── weapons/                  
-    │   │   │   ├── shur.png               
-    │   │   │   └── shur2.png              
-    │   │   └── characters/
-    │   │       ├── naruto/
-    │   │       │   ├── stand/            
-    │   │       │   ├── run/
-    │   │       │   ├── jump/
-    │   │       │   ├── guard/
-    │   │       │   ├── damage/
-    │   │       │   ├── throw/
-    │   │       │   ├── defeated/
-    │   │       │   └──  winner/
-    │   │       └── sasuke/
-    │   │           ├── stand/
-    │   │           ├── run/
-    │   │           ├── jump/
-    │   │           ├── guard/
-    │   │           ├── damage/
-    │   │           ├── throw/
-    │   │           ├── defeated/
-    │   │           └──  winner/
-    │   └── sounds/                        
-    │       ├── bg_music.mp3
-    │       ├── jump.wav
-    │       ├── shuriken.wav
-    │       ├── hit.wav
-    │       ├── click.wav
-    │       └── block.wav
+    │ ├── images/
+    │ │ ├── background/ → Game backgrounds
+    │ │ ├── ui/ → UI elements (buttons, banners, icons)
+    │ │ ├── weapons/ → Shuriken sprites
+    │ │ └── characters/ → Naruto & Sasuke animations
+    │ └── sounds/ → Game sound effects & music
     │
-    ├── src/                               
-    │   ├── main.py                        
-    │   ├── battle.py                      
-    │   ├── player.py                      
-    │   ├── enemy.py                      
-    │   ├── help.py                
-    │   ├── health.py                  
-    │   ├── button.py                       
-    │   └──  shuriken.py                 
-    │                    
+    ├── src/
+    │ ├── main.py → Game entry point
+    │ ├── battle.py → Handles combat logic
+    │ ├── player.py → Naruto logic & controls
+    │ ├── enemy.py → Sasuke AI behavior
+    │ ├── help.py → Help screen display
+    │ ├── health.py → Health bar logic
+    │ ├── button.py → Custom button UI
+    │ └── shuriken.py → Shuriken weapon logic
+    │
     ├── README.md
     ├── requirements.txt
+    ├── .gitignore
     └── LICENSE
 
 ---
 
-## ▶️ How to Run
+## 💻 Setup & Installation
 
-### 🔧 Requirements
+### ✅ Requirements
+
 - Python 3.10+
-- Pygame
+- [Pygame](https://www.pygame.org/) (installed via pip)
 
-## 📥 Installation
+### 📥 Installation
+
+#### 1. Clone the repository
 ```bash
-# Clone the repo
 git clone https://github.com/HarshBelekar/Shinobi-Saga.git
 cd Shinobi-Saga
 ```
 
-### (Optional) Create a virtual environment
-```bush
+#### 2. Create and activate a virtual environment (Optional but recommended)
+```bash
 python -m venv venv
 venv\Scripts\activate   # On Windows
 ```
 
-### Install dependencies
-```bush
+#### 3. Install dependencies
+```bash
 pip install -r requirements.txt
 ```
 
-### 🚀 Launch Game
-```bush
+#### 4. Run the game
+```bash
 cd src
 python main.py
 ```
----
-
-# 📸 Screenshots
-Coming Soon...
 
 ---
 
-# 📄 License
+## 🚀 Future Plans
+
+ - 🧑‍🎨 Character Selection Screen
+
+ - 🔥 Special Attacks for Each Character
+
+ - 🤖 Smarter Enemy AI
+
+ - 🌍 Expandable Shinobi Roster
+
+ - 🎯 Combo-based Battle Mechanics
+
+---
+
+## 📄 License
 
 This project is licensed under the [MIT License](LICENSE).
 
 ---
 
+## ⭐ Show Your Support
+
+##### If you like the project, please give it a ⭐️ on GitHub and share with fellow fans and developers!
+
+ - ⭐ Star the repo
+
+ - 🐛 Report bugs or suggestions via Issues
+
+ - 🤝 Contribute to the next version!
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome! For major changes, please open an issue first to discuss what you would like to change.  
+Make sure to follow best practices and test your changes.
+
+---
+
+## 👨‍💻 Developer
+
 ### 🙌 Built with ❤️ by [Harsh Belekar](https://github.com/HarshBelekar)
+
+---
