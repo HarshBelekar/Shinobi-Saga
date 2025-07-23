@@ -13,8 +13,7 @@ class HealthBar:
     def player_bar(self,surface):
         # Draw the player's health bar and icon on the screen
         surface.blit(self.icon, (10, 10))  # Draw the player's icon at the top-left
-        self.hitbox = (self.x + 10, self.y + 5, 80, 80)  # Update hitbox (if needed for detection later)
-
+        
         # Draw the red background (full bar)
         pygame.draw.rect(surface, (255, 0, 0), (87, 38, 202, 25))
 
@@ -24,7 +23,6 @@ class HealthBar:
     def enemy_bar(self,surface):
         # Draw the enemy's health bar and icon on the screen
         surface.blit(self.icon, (910, 10))  # Draw enemy icon at the top-right
-        self.hitbox = (self.x + 10, self.y + 5, 80, 80)  # Update hitbox
 
         # Draw the red background (full bar)
         pygame.draw.rect(surface, (255, 0, 0), (710, 38, 202, 25))

@@ -85,6 +85,7 @@
     │ ├── help.py → Help screen display
     │ ├── health.py → Health bar logic
     │ ├── button.py → Custom button UI
+    │ ├── assets.py → Imports all the assets
     │ └── shuriken.py → Shuriken weapon logic
     │
     ├── README.md

@@ -2,11 +2,8 @@ import pygame # type: ignore
 from shuriken import Shuriken # Import the Shuriken class for enemy to throw
 import random
 from health import HealthBar # Import custom HealthBar class for visual health display
+from assets import images, sounds, load_animation , load_character # Centralized asset import
 
-# ----------------- Assets Paths -----------------
-CHARACTER_PATH = "assets/images/characters/sasuke/"
-SFX_PATH = "assets/sounds/"
-ICON_PATH = "assets/images/ui/icons/"
 
 class Enemy:
     
@@ -33,51 +30,33 @@ class Enemy:
         # Animation & State
         self.state = "stand"  # Initial animation state
         self.frame = 0  # Frame index for animations
-        self.animation_speed = 0.3  # Speed of animation transitions
         self.throw_timer = 0  # Timer to manage shuriken throw cooldown
         self.jump_chance = 0.01  # Small chance to jump every frame
         self.throw_chance = 0.05  # Small chance to Throw every frame
         self.throw_duration = 30  # Frames the throw lasts (~0.5 sec at 60 FPS)
-        
-        # Load character icon (used in health bar)
-        self.icon = pygame.image.load(ICON_PATH + "sasuke_head.png").convert_alpha()
-        
         self.count=0 # Misc variable used for defeated state
 
-        # Load images and sounds
-        self.load_images()
-        self.load_sounds()
         
-        # Create health bar instance
-        self.health_bar=HealthBar(self.icon,self.x,self.y)
-        
-    def load_images(self):
-        """Load all static and animated images for the character."""
-        
-        # Static images
-        self.images = {
-            "stand": pygame.image.load(CHARACTER_PATH + "stand/stand_1.png").convert_alpha(),
-            "defeated": pygame.image.load(CHARACTER_PATH + "defeated/defeated_3.png").convert_alpha(),
-        }
+        # Load icon from centralized assets
+        self.icon = images.get("sasuke_head")
 
-        # Load animations for actions
-        self.animations = {
-            "run": self.load_animation("run", 6),
-            "jump": self.load_animation("jump", 4),
-            "throw": self.load_animation("throw", 3),
+        # Load animations using utility functions
+        self.images = {
+            "stand": load_character("sasuke", "stand"),
+            "defeated": load_character("sasuke", "defeated"),
         }
         
-    def load_animation(self, action, frame_count):
-        """Helper to load a list of animation frames for a specific action."""
-        return [
-            pygame.image.load(f"{CHARACTER_PATH}{action}/{action}_{i}.png").convert_alpha()
-            for i in range(1, frame_count + 1)
-        ]
+        self.animations = {
+            "run": load_animation("sasuke", "run", 6),
+            "jump": load_animation("sasuke", "jump", 4),
+            "throw": load_animation("sasuke", "throw", 3),
+        }
         
-    def load_sounds(self):
-        """Load character-related sound effects."""
-        self.jump_sound = pygame.mixer.Sound(SFX_PATH + "jump.wav")
-        self.throw_sound = pygame.mixer.Sound(SFX_PATH + "shuriken.wav")
+        # Load sounds from centralized assets
+        self.jump_sound = sounds.get("jump")
+        self.throw_sound = sounds.get("throw")
+
+        self.health_bar=HealthBar(self.icon,self.x,self.y) # Create health bar instance
     
     def jump(self):
         """ Trigger jump action with upward velocity and sound. """
@@ -97,7 +76,11 @@ class Enemy:
             
             if len(self.shurikens) < 6 : 
                 # Create a new shuriken and add it to the list
-                new_shuriken = Shuriken(self.x + 60 if self.facing_right else self.x + 20, self.y, self.facing_right)
+                new_shuriken = Shuriken(
+                    self.x + 60 if self.facing_right else self.x + 20, 
+                    self.y, 
+                    self.facing_right
+                    )
                 self.shurikens.append(new_shuriken)
 
     def apply_physics(self):
@@ -148,26 +131,21 @@ class Enemy:
 
     def update_animation(self):
         """Return the correct animation frame based on the current state."""
-        if self.state == "stand":
-            image = self.images["stand"]
+        
+        if self.state in ["stand", "defeated"]:
+            image = self.images[self.state]
             self.frame = 0
+        else:
+            if self.state == "run":
+                self.frame += 0.2
+            elif self.state == "jump":
+                self.frame += 0.1
+            elif self.state == "throw":
+                self.frame += 0.09
             
-        elif self.state == "defeated":
-            image = self.images["defeated"]
-            self.frame = 0
-            
-        elif self.state == "run":
-            self.frame += 0.2
-            image = self.animations["run"][int(self.frame) % len(self.animations["run"])]
-            
-        elif self.state == "jump":
-            self.frame += 0.1
-            image = self.animations["jump"][int(self.frame) % len(self.animations["jump"])]
-            
-        elif self.state == "throw":
-            self.frame += 0.09
-            image = self.animations["throw"][int(self.frame) % len(self.animations["throw"])]
-            
+            frames = self.animations[self.state]
+            image = frames[int(self.frame) % len(frames)]
+        
         # Flip character image if facing left
         if not self.facing_right:
             image = pygame.transform.flip(image, True, False)

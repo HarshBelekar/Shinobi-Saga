@@ -1,14 +1,12 @@
 import pygame  # type: ignore
-
-# Folder path for weapon assets
-WEAPONS_PATH="assets/images/weapons/"
+from assets import images # Centralized asset import
 
 # Shuriken class to handle its behavior and rendering
 class Shuriken:
     def __init__(self, x, y, facing_right,damage=10):
         
         # Load the Small shuriken image
-        self.original_image = pygame.image.load(WEAPONS_PATH + "shur2.png").convert_alpha()
+        self.original_image = images["small_shuriken"]
         
         self.damage = damage  # 💥 damage on hit
         # Starting angle

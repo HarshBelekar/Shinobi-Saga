@@ -3,16 +3,11 @@ import sys
 import button
 import player
 import enemy
-
+from assets import images, sounds  # Import centralized assets
 # ----------------- Game Settings -----------------
 SCREEN_WIDTH = 1000
 SCREEN_HEIGHT = 600
 FPS = 60
-
-# ----------------- Assets Paths -----------------
-BG = "assets/images/background/bg.png"
-UI_PATH = "assets/images/ui/pause_menu/"
-BANNERS_PATH = "assets/images/ui/banners/"
 
 class Battle:
     
@@ -25,23 +20,18 @@ class Battle:
         self.clock = pygame.time.Clock()
         
         # ----------------- Load Assets -----------------
-        # Background & Pause Menu UI
-        try:
-            self.bg=pygame.image.load(BG).convert_alpha()
-            self.pause_menu=pygame.image.load(UI_PATH + "pause_menu.png").convert_alpha()
-            self.pause_img=pygame.image.load(UI_PATH + "pause_button.png").convert_alpha()
-            self.resume_img=pygame.image.load(UI_PATH + "resume_button.png").convert_alpha()
-            self.restart_img=pygame.image.load(UI_PATH + "restart_button.png").convert_alpha()
-            self.exit_img=pygame.image.load(UI_PATH + "exit1_button.png").convert_alpha()
-            self.home_img=pygame.image.load(UI_PATH + "home_button.png").convert_alpha()
-            self.naruto_win=pygame.image.load(BANNERS_PATH + "naruto_wins.png").convert_alpha()
-            self.sasuke_win=pygame.image.load(BANNERS_PATH + "sasuke_wins.png").convert_alpha()
-            
-        except Exception as e:
-            print("Error loading images:", e)
+        self.bg = images["bg"]
+        self.pause_menu = images["pause_menu"]
+        self.pause_img = images["pause"]
+        self.resume_img = images["resume"]
+        self.restart_img = images["restart"]
+        self.exit_img = images["exit1"]
+        self.home_img = images["home"]
+        self.naruto_win = images["naruto_win"]
+        self.sasuke_win = images["sasuke_win"]
         
         # ----------------- Load Sound -----------------
-        self.click=pygame.mixer.Sound("assets/sounds/click.wav")
+        self.click = sounds["click"]
         self.hit_sound = pygame.mixer.Sound("assets/sounds/hit.wav")
         
         # ----------------- Buttons -----------------
@@ -83,7 +73,7 @@ class Battle:
                 
                 if self.resume_button.draw(self.battle_screen):
                     self.paused=False
-            
+                
                 if self.restart_button.draw(self.battle_screen):
                     self.restart_game()
                 
@@ -105,9 +95,8 @@ class Battle:
             pygame.display.flip()
         
         # Restart game loop if restart triggered
-        else:
-            if self.restart:
-                self.run_game()
+        if self.restart:
+            self.run_game()
     
     def handle_character_logic(self, character, opponent, is_player=True):
         """ Handles movement, shuriken updates, physics, health, and state. """
@@ -143,14 +132,13 @@ class Battle:
         # Check for shuriken hit collisions
         self.check_damage(character, opponent)
 
-    def check_damage(self,player,enemy):
-        """ Checks if any player shuriken collides with enemy. """
-    
-        for shuriken in player.shurikens[:]:
-            if shuriken.rect.colliderect(enemy.rect):
-                enemy.health_bar.enemy_hit()  # Reduce health
-                player.shurikens.remove(shuriken)
-
+    def check_damage(self, attacker, target):
+        """ Checks if a shuriken hit the target. """
+        for shuriken in attacker.shurikens[:]:
+            if shuriken.rect.colliderect(target.rect):
+                target.health_bar.enemy_hit()
+                attacker.shurikens.remove(shuriken)
+                
                 self.hit_sound.play()
 
     def game_over(self,winner):
