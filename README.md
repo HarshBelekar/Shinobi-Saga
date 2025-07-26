@@ -22,7 +22,11 @@
 
 - 🧍‍♂️ **Playable Characters**: Naruto (Player) vs Sasuke (Enemy)
 - 🎞️ **Smooth Animations**: Idle, Run, Jump, Attack, Damage, Defeated, Victory
+- 🛡️ **Block System**: Player can block attacks (up to 2 consecutive blocks)
 - 🗡️ **Shuriken Combat**: Throwing projectiles with effects
+- 💥 **Damage System**: Small and big shuriken cause different damage animations
+- ⚰️ **Defeat Animation**: Unique falling + stepping back + ground-sink animation
+- 🧠 **Smart AI**: Sasuke blocks automatically after hit and resets on next throw
 - ❤️ **Health Bars** with Character Head Icons
 - 🎵 **Sound Effects**: Click, Hit, Jump, Block, Background Music
 - ⏸️ **Pause Menu**: Resume, Restart, Exit, Home Navigation
@@ -146,6 +150,12 @@ python main.py
 ## 📄 License
 
 This project is licensed under the [MIT License](LICENSE).
+This game is for **educational and non-commercial** use only.
+
+---
+
+## Disclaimer
+This project is a fan-made tribute inspired by the Naruto anime and manga series. All intellectual property relating to Naruto belongs to its respective owners (Shueisha, TV Tokyo, Studio Pierrot, etc.). This game is developed for educational and non-commercial purposes only. No copyright infringement is intended.
 
 ---
 
