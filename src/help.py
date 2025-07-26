@@ -1,4 +1,4 @@
-import pygame  # type: ignore
+import pygame
 import button
 from assets import images, sounds  # Import centralized assets
 
@@ -23,7 +23,11 @@ def help_screen(SCREEN_WIDTH):
         "1. Use LEFT Arrow Key to Move Left",
         "2. Use RIGHT Arrow Key to Move Right",
         "3. Use UP Arrow Key to Jump",
-        "4. Press SPACE to Throw Shuriken"
+        "4. Press SPACE & Shift + SPACE to Throw Small & Big Shuriken ",
+        "5. Use DOWN Arrow Key to Block Shuriken",
+        "5.1 You can Block 2 Shuriken in Row.",
+        "5.2 After that you need to attack 1 Shuriken to block another",
+        "    Shuriken"
     ]
 
     # ----------------- Help Screen Loop -----------------
@@ -38,7 +42,7 @@ def help_screen(SCREEN_WIDTH):
         # --- Render Instructions ---
         for i, line in enumerate(instructions):
             rendered_line = font.render(line, True, "white")
-            pygame.display.get_surface().blit(rendered_line, (220, 100 + i * 60))
+            pygame.display.get_surface().blit(rendered_line, (20, 80 + i * 60))
 
         # --- Draw Back Button ---
         if back_button.draw(pygame.display.get_surface()):

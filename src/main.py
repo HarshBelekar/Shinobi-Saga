@@ -1,6 +1,4 @@
-import pygame  # type: ignore
-
-
+import pygame 
 
 # -------------------- Initialize Pygame --------------------
 pygame.init()
@@ -25,36 +23,47 @@ exit_button = button.Button(680, 490, images["exit"], 1)
 
 # -------------------- Main Menu Loop --------------------
 def main():
+    # Create a clock object to manage frame rate
     clock = pygame.time.Clock()
+    
+    # Flag to control the main loop
     running = True
 
     while running:
-        clock.tick(FPS)
+        
+        clock.tick(FPS) # Limit frame rate to FPS
+        
+        # ---- Draw Background and Logo ----
         screen.blit(images["bg"], (0, 0))       # Draw background
         screen.blit(images["logo"], (130, 80))  # Draw game logo
 
         # ---- Handle Button Clicks ----
+        
+        # Start Game Button
         if start_button.draw(screen):
-            sounds["click"].play()
-            battle_screen = battle.Battle()
-            battle_screen.run_game()
+            sounds["click"].play() # Play click sound
+            battle_screen = battle.Battle() # Create battle instance
+            battle_screen.run_game()  # Run the battle screen
 
+        # Help Button
         if help_button.draw(screen):
-            sounds["click"].play()
-            help.help_screen(SCREEN_WIDTH)
+            sounds["click"].play() # Play click sound
+            help.help_screen(SCREEN_WIDTH)  # Show help screen
 
+        # Exit Button
         if exit_button.draw(screen):
-            sounds["click"].play()
-            running = False
+            sounds["click"].play() # Play click sound
+            running = False # Exit the main menu loop
 
         # ---- Handle Quit Event ----
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                running = False
+                running = False # Quit the game if user closes the window
 
-        pygame.display.flip()  # Refresh the display
+        pygame.display.flip()  # Update the full display surface to the screen
 
-    pygame.quit()
+    # ---- Clean Exit ----
+    pygame.quit() # Close the Pygame window and clean up resources
 
 # -------------------- Start Game --------------------
 if __name__ == "__main__":

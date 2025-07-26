@@ -1,4 +1,4 @@
-import pygame  # type: ignore
+import pygame  
 
 class Button:
     """A clickable button with image scaling, hover effect, and click detection."""
@@ -41,6 +41,7 @@ class Button:
         Returns:
             bool: True if the button was clicked, False otherwise.
         """
+        
         action = False
         mouse_pos = pygame.mouse.get_pos()
 

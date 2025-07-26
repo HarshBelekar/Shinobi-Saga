@@ -1,7 +1,6 @@
-import pygame  # type: ignore
+import pygame
 import os
 import sys
-
 
 # ----------------- Asset Base Path -----------------
 SND_PATH = "assets/sounds/"
@@ -45,6 +44,7 @@ def load_animation(character: str, action: str, frame_count: int):
         for i in range(1, frame_count + 1)
     ]
 
+# ----------------- Loading Single Animation Images --------------
 def load_character(character: str, action: str):
     path = f"assets/images/characters/{character}/{action}/{action}_1"
     
@@ -72,6 +72,7 @@ images.update(load_ui_images(PAUSE_MENU_PATH, {
     "restart": "restart_button",
     "home": "home_button",
     "exit1": "exit1_button",
+    "pause": "pause_button"
 }))
 
 # Win Banners
@@ -99,6 +100,7 @@ try:
     sounds["throw"] = pygame.mixer.Sound(resource_path(os.path.join(SND_PATH, "shuriken.wav")))
     sounds["jump"] = pygame.mixer.Sound(resource_path(os.path.join(SND_PATH, "jump.wav")))
     sounds["hit"] = pygame.mixer.Sound(resource_path(os.path.join(SND_PATH, "hit.wav")))
+    sounds["block"] = pygame.mixer.Sound(resource_path(os.path.join(SND_PATH, "block.wav")))
     
 except Exception as e:
     print(f"[ERROR] Sound loading failed: {e}")

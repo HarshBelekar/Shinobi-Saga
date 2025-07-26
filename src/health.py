@@ -1,6 +1,7 @@
-import pygame # type: ignore
+import pygame 
 
 class HealthBar:
+    
     def __init__(self,icon,x,y):
         # Initialize the health bar with an icon and position
         self.icon=icon

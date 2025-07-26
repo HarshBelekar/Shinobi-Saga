@@ -1,14 +1,22 @@
-import pygame  # type: ignore
+import pygame
 from assets import images # Centralized asset import
 
 # Shuriken class to handle its behavior and rendering
 class Shuriken:
-    def __init__(self, x, y, facing_right,damage=10):
+    
+    def __init__(self, x, y, facing_right,is_big):
+        
+        self.damage = 10  # 💥 damage on hit
         
         # Load the Small shuriken image
-        self.original_image = images["small_shuriken"]
+        if is_big :
+            self.img = "big_shuriken" 
+            self.damage = 20 # Big damage on hit
+        else :
+            self.img = "small_shuriken" 
+            
+        self.original_image = images[self.img]
         
-        self.damage = damage  # 💥 damage on hit
         # Starting angle
         self.angle = 0
         
